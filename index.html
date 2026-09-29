@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Anh Độ PC - Hệ Thống Máy Tính Cao Cấp</title>
+</head>
+<body>
+
+<div class="app-container">
+    <!-- BANNER SHOP ANH ĐỘ PC LỘI CUỐN -->
+    <header class="shop-header">
+        <h1 class="shop-title">🔥 Shop Anh Độ PC 🔥</h1>
+        <p style="margin: 0; font-size: 0.95em; opacity: 0.95; font-weight: 500;">
+            Kênh sỉ máy tính, lắp ráp PC Gaming và thiết bị Livestream uy tín số 1 Bộ Tộc
+        </p>
+    </header>
+
+    <!-- HỆ THỐNG TÀI KHOẢN TỘC VIÊN & QUỸ CẤP VỐN -->
+    <section class="auth-box">
+        <div id="auth-form-wrapper" class="auth-form">
+            <input type="text" id="reg-user" placeholder="Tên tộc viên..." required>
+            <input type="password" id="reg-pass" placeholder="Mật khẩu bảo mật..." required>
+            <input type="email" id="reg-email" placeholder="Email nhận thông báo..." required>
+            <button class="btn-general" onclick="handleRegister()">ĐĂNG KÝ NHẬN 10 TRIỆU VỐN</button>
+        </div>
+        
+        <div id="user-info-panel" class="user-info-panel">
+            <div class="badge-item">👤 Tộc viên: <span id="display-name" style="color:#d32f2f">...</span></div>
+            <div class="badge-item">🏅 Danh hiệu: <span id="display-rank" style="color:#1e3a8a">Thành viên mới</span></div>
+            <div class="badge-item">💰 Số dư ví: <span id="display-balance" style="color:#2e7d32">0</span> đ</div>
+            <button class="btn-deposit-open" onclick="toggleDepositModal(true)">💳 NẠP TIỀN ĐIỆN TỬ</button>
+        </div>
+    </section>
+    <!-- BỐ CỤC CHÍNH CHIA 2 CỘT CHỐNG TRÀN -->
+    <div class="main-layout">
+        
+        <!-- CỘT BÊN TRÁI: DANH SÁCH MẶT HÀNG SỈ MÁY TÍNH -->
+        <div class="left-column">
+            <h2 class="section-title">I. Danh Sách Chọn Mặt Hàng Máy Tính</h2>
+            <div class="products-list">
+                
+                <!-- Máy 1 -->
+                <div class="product-card">
+                    <div class="prod-icon">🖥️</div>
+                    <div class="product-details">
+                        <h3>PC Mixi Văn Phòng Giá Hời</h3>
+                        <div class="product-price">2,300,000 đ</div>
+                        <div class="product-stock">Kho sỉ: <strong id="stock-p1">1</strong> cái</div>
+                        <div class="product-review">⚙️ Cấu hình: Core i3 | RAM 8GB | SSD 246GB (Lướt web cực mượt)</div>
+                        <div id="acc-info-box" class="info-result-box">
+                            <strong>🔑 QUÀ TẶNG KÈM ACC GAME ĐỘC QUYỀN:</strong><br>
+                            • TK: <span class="highlight-txt">MESSIBETTERTHANRONALDO</span><br>
+                            • MK: <span class="highlight-txt">2022worldcup</span>
+                        </div>
+                    </div>
+                    <div class="qty-control">
+                        <button class="btn-qty" onclick="changeQty('p1', -1)">-</button>
+                        <span class="qty-val" id="qty-p1">0</span>
+                        <button class="btn-qty" onclick="changeQty('p1', 1)">+</button>
+                    </div>
+                </div>
+
+                <!-- Máy 2 -->
+                <div class="product-card">
+                    <div class="prod-icon">📱</div>
+                    <div class="product-details">
+                        <h3>iPhone 20 Pro Max Giả Lập PC</h3>
+                        <div class="product-price">500,000 đ</div>
+                        <div class="product-stock">Kho sỉ: <strong id="stock-p2">2</strong> cái</div>
+                        <div class="product-review">⚙️ Đặc biệt: Cấu hình chip Apple A20, màn hình 120Hz mượt mà</div>
+                    </div>
+                    <div class="qty-control">
+                        <button class="btn-qty" onclick="changeQty('p2', -1)">-</button>
+                        <span class="qty-val" id="qty-p2">0</span>
+                        <button class="btn-qty" onclick="changeQty('p2', 1)">+</button>
+                    </div>
+                </div>
+
+                <!-- Máy 3 -->
+                <div class="product-card">
+                    <div class="prod-icon">💻</div>
+                    <div class="product-details">
+                        <h3>Laptop ThinkPad T480 Nồi Đồng Cối Đá</h3>
+                        <div class="product-price">2,000,000 đ</div>
+                        <div class="product-stock">Kho sỉ: <strong id="stock-p3">42</strong> cái</div>
+                        <div class="product-review">⚙️ Cấu hình: Core i5 | RAM 16GB | Siêu bền bỉ cho lập trình, học tập</div>
+                    </div>
+                    <div class="qty-control">
+                        <button class="btn-qty" onclick="changeQty('p3', -1)">-</button>
+                        <span class="qty-val" id="qty-p3">0</span>
+                        <button class="btn-qty" onclick="changeQty('p3', 1)">+</button>
+                    </div>
+                </div>
+
+                <!-- Máy 4 -->
+                <div class="product-card">
+                    <div class="prod-icon">🎮</div>
+                    <div class="product-details">
+                        <h3>PC Gaming "CS:GO" Giá Học Sinh</h3>
+                        <div class="product-price">4,500,000 đ</div>
+                        <div class="product-stock">Kho sỉ: <strong id="stock-p4">15</strong> cái</div>
+                        <div class="product-review">⚙️ Cấu hình: i5 12400F | GTX 1650 | RAM 16GB (Chiến game FPS cực đỉnh)</div>
+                    </div>
+                    <div class="qty-control">
+                        <button class="btn-qty" onclick="changeQty('p4', -1)">-</button>
+                        <span class="qty-val" id="qty-p4">0</span>
+                        <button class="btn-qty" onclick="changeQty('p4', 1)">+</button>
+                    </div>
+                </div>
+
+                <!-- Máy 5 -->
+                <div class="product-card">
+                    <div class="prod-icon">🎥</div>
+                    <div class="product-details">
+                        <h3>PC Livestream "7-8 Triệu" Như Lương Anh Độ</h3>
+                        <div class="product-price">7,500,000 đ</div>
+                        <div class="product-stock">Kho sỉ: <strong id="stock-p5">5</strong> cái</div>
+                        <div class="product-review">⚙️ Cấu hình: Ryzen 5 | RTX 3060 | Chuyên dụng live stream đa kênh ổn định</div>
+                    </div>
+                    <div class="qty-control">
+                        <button class="btn-qty" onclick="changeQty('p5', -1)">-</button>
+                        <span class="qty-val" id="qty-p5">0</span>
+                        <button class="btn-qty" onclick="changeQty('p5', 1)">+</button>
+                    </div>
+                </div>
+                <!-- Máy 6 -->
+                <div class="product-card">
+                    <div class="prod-icon">⚙️</div>
+                    <div class="product-details">
+                        <h3>Siêu Máy Tính Cao Cấp "Tộc Trưởng" Luxury</h3>
+                        <div class="product-price">15,000,000 đ</div>
+                        <div class="product-stock">Kho sỉ: <strong id="stock-p6">3</strong> cái</div>
+                        <div class="product-review">⚙️ Cấu hình: i9 14900KS | RTX 4090 | Tản nhiệt nước custom đỉnh chóp</div>
+                    </div>
+                    <div class="qty-control">
+                        <button class="btn-qty" onclick="changeQty('p6', -1)">-</button>
+                        <span class="qty-val" id="qty-p6">0</span>
+                        <button class="btn-qty" onclick="changeQty('p6', 1)">+</button>
+                    </div>
+                </div>
+
+                <!-- Máy 7 -->
+                <div class="product-card">
+                    <div class="prod-icon">💻</div>
+                    <div class="product-details">
+                        <h3>MacBook Pro M3 Max Cho Dân Thiết Kế</h3>
+                        <div class="product-price">12,500,000 đ</div>
+                        <div class="product-stock">Kho sỉ: <strong id="stock-p7">8</strong> cái</div>
+                        <div class="product-review">⚙️ Cấu hình: Apple M3 Max | RAM 36GB | Màn hình Liquid Retina chuẩn màu</div>
+                    </div>
+                    <div class="qty-control">
+                        <button class="btn-qty" onclick="changeQty('p7', -1)">-</button>
+                        <span class="qty-val" id="qty-p7">0</span>
+                        <button class="btn-qty" onclick="changeQty('p7', 1)">+</button>
+                    </div>
+                </div>
+
+                <!-- Máy 8 -->
+                <div class="product-card">
+                    <div class="prod-icon">🕹️</div>
+                    <div class="product-details">
+                        <h3>PC Giả Lập 20 NoxPlayer Bá Đạo</h3>
+                        <div class="product-price">6,000,000 đ</div>
+                        <div class="product-stock">Kho sỉ: <strong id="stock-p8">10</strong> cái</div>
+                        <div class="product-review">⚙️ Cấu hình: Dual Xeon | RAM 64GB | Chuyên cày cuốc game Mobile, treo acc</div>
+                    </div>
+                    <div class="qty-control">
+                        <button class="btn-qty" onclick="changeQty('p8', -1)">-</button>
+                        <span class="qty-val" id="qty-p8">0</span>
+                        <button class="btn-qty" onclick="changeQty('p8', 1)">+</button>
+                    </div>
+                </div>
+
+                <!-- Máy 9 -->
+                <div class="product-card">
+                    <div class="prod-icon">📦</div>
+                    <div class="product-details">
+                        <h3>Thùng Máy Case Gaming Bể Cá Lấp Lánh</h3>
+                        <div class="product-price">1,200,000 đ</div>
+                        <div class="product-stock">Kho sỉ: <strong id="stock-p9">20</strong> cái</div>
+                        <div class="product-review">⚙️ Thiết kế: Kính cường lực 3 mặt vô cực kèm 6 Fan LED RGB đổi màu</div>
+                    </div>
+                    <div class="qty-control">
+                        <button class="btn-qty" onclick="changeQty('p9', -1)">-</button>
+                        <span class="qty-val" id="qty-p9">0</span>
+                        <button class="btn-qty" onclick="changeQty('p9', 1)">+</button>
+                    </div>
+                </div>
+
+                <!-- Máy 10 -->
+                <div class="product-card">
+                    <div class="prod-icon">⚡</div>
+                    <div class="product-details">
+                        <h3>PC Đồ Hoạ "AI Deep Learning" Tương Lai</h3>
+                        <div class="product-price">18,000,000 đ</div>
+                        <div class="product-stock">Kho sỉ: <strong id="stock-p10">2</strong> cái</div>
+                        <div class="product-review">⚙️ Cấu hình: AMD Threadripper | 2x RTX 4080 Super | Chuyên render AI khủng</div>
+                    </div>
+                    <div class="qty-control">
+                        <button class="btn-qty" onclick="changeQty('p10', -1)">-</button>
+                        <span class="qty-val" id="qty-p10">0</span>
+                        <button class="btn-qty" onclick="changeQty('p10', 1)">+</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CỘT BÊN PHẢI: GIỎ HÀNG VÀ MÃ KHUYẾN MÃI -->
+        <div class="right-column">
+            <h2 class="section-title">🛒 Giỏ Hàng Tổng Hợp</h2>
+            <div class="cart-box">
+                <div id="cart-items-list">
+                    <div class="empty-cart">Chưa chọn máy tính sỉ nào...</div>
+                </div>
+                
+                <div id="cart-summary" style="display:none; margin-top: 12px; border-top: 1px dashed #cbd5e1; padding-top: 10px;">
+                    <div class="coupon-section">
+                        <input type="text" id="coupon-code" placeholder="Nhập mã: VAU999 để giảm tiền...">
+                        <button onclick="applyCoupon()">Áp Dụng</button>
+                    </div>
+                    <div id="coupon-msg" style="font-size:0.85em; margin: 4px 0; font-weight:bold;"></div>
+
+                    <div class="summary-line">
+                        <span>Tạm tính:</span>
+                        <span id="cart-subtotal">0 đ</span>
+                    </div>
+                    <div class="summary-line" id="discount-line" style="display:none; color:#16a34a;">
+                        <span>Giảm giá độc quyền:</span>
+                        <span id="cart-discount">-0 đ</span>
+                    </div>
+                    <div class="summary-line final-total">
+                        <span>Tổng cần trả:</span>
+                        <span id="cart-total-price">0 đ</span>
+                    </div>
+                    <button class="btn-general" style="background:#cbd5e1; width:100%; margin-top:10px; font-size:1.1em;" id="btn-checkout-trigger" onclick="openDeliveryForm()" disabled>BẤM THANH TOÁN ĐƠN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- KHUNG ĐIỀN THÔNG TIN GIAO HÀNG SỈ -->
+    <div id="delivery-form" class="delivery-form-container">
+        <h4>📦 Thông Tin Nhận Hàng Hoá Sỉ</h4>
+        <div class="form-grid">
+            <input type="text" id="deliv-name" placeholder="Tên người nhận sỉ..." required>
+            <input type="text" id="deliv-phone" placeholder="Số điện thoại..." required>
+            <input type="text" id="deliv-address" placeholder="Địa chỉ kho nhận máy tính chi tiết..." required>
+        </div>
+        <button class="btn-general" style="background:#d32f2f; width:100%; margin-top:5px;" onclick="submitDelivery()">XÁC NHẬN GIAO HÀNG & TRỪ QUỸ</button>
+    </div>
+
+    <!-- MỤC II. VÒNG QUAY MAY MẮN NÂNG CẤP HIỂN THỊ CHỮ TRÊN BẢNG -->
+    <section class="wheel-section">
+        <h2 class="section-title" style="margin:0; width:100%;">II. Vòng Quay May Mắn Bộ Tộc (Còn <span id="spin-count">3</span> lượt Free)</h2>
+        
+        <div class="wheel-outer">
+            <div class="wheel-pointer"></div>
+            <!-- Vòng quay tích hợp sẵn các nhãn chữ phần thưởng -->
+            <div id="wheel" class="wheel">
+                <div class="wheel-text-item" style="transform: rotate(0deg) translate(0, -85px) rotate(0deg);">Slot Live</div>
+                <div class="wheel-text-item" style="transform: rotate(45deg) translate(0, -85px) rotate(-45deg);">RTX 6090</div>
+                <div class="wheel-text-item" style="transform: rotate(90deg) translate(0, -85px) rotate(-90deg);">Áo Mixi</div>
+                <div class="wheel-text-item" style="transform: rotate(135deg) translate(0, -85px) rotate(-135deg);">TV OLED</div>
+                <div class="wheel-text-item" style="transform: rotate(180deg) translate(0, -85px) rotate(-180deg);">Lương 7Tr</div>
+                <div class="wheel-text-item" style="transform: rotate(225deg) translate(0, -85px) rotate(-225deg);">Ferrari MH</div>
+                <div class="wheel-text-item" style="transform: rotate(270deg) translate(0, -85px) rotate(-270deg);">Bịch Láp</div>
+                <div class="wheel-text-item" style="transform: rotate(315deg) translate(0, -85px) rotate(-315deg);">Cái Nịt</div>
+            </div>
+        </div>
+
+        <button id="btn-spin" class="btn-spin" onclick="spinWheel()" disabled>QUAY THƯỞNG NGAY</button>
+        <div id="reward-display" class="reward-alert-box"></div>
+
+        <!-- Khung điền thông tin quà trúng thưởng -->
+        <div id="reward-delivery-form" class="delivery-form-container" style="width: 100%;">
+            <h4 style="margin:0 0 10px 0; color:#065f46">🎁 Điền Địa Chỉ Giao Phần Thưởng Trúng Thưởng</h4>
+            <div class="form-grid">
+                <input type="text" id="reward-name" placeholder="Tên người nhận quà..." required>
+                <input type="text" id="reward-phone" placeholder="Số điện thoại..." required>
+                <input type="text" id="reward-address" placeholder="Địa chỉ nhà riêng..." required>
+            </div>
+            <button class="btn-general" style="background: #16a34a;" onclick="submitRewardDelivery()">XÁC NHẬN ĐỔI QUÀ VẬT LÝ</button>
+        </div>
+    </section>
+</div>
+
+<!-- POPUP CỔNG NẠP TIỀN ĐIỆN TỬ -->
+<div id="deposit-modal" class="modal-overlay">
+    <div class="modal-content">
+        <h3>💳 CỔNG NẠP TIỀN ĐIỆN TỬ BỘ TỘC</h3>
+        <p style="font-size:0.85em; color:#64748b; margin-top:-10px;">Chọn phương thức nạp tiền ảo để nâng số dư tiêu dùng</p>
+        
+        <div class="method-grid">
+            <div class="method-card active" id="method-bank" onclick="selectMethod('bank')">🏦 Ngân Hàng Điện Tử</div>
+            <div class="method-card" id="method-card" onclick="selectMethod('card')">🃏 Thẻ Cào Viettel/Vina</div>
+            <div class="method-card" id="method-faith" onclick="selectMethod('faith')">🙏 Nạp Bằng Niềm Tin</div>
+        </div>
+
+        <div id="area-bank" class="method-detail-area">
+            <p>Quét mã QR dưới đây để nhận ngay tiền ảo vào ví (Mã giả lập vui vẻ):</p>
+            <div style="background:#e2e8f0; width:120px; height:120px; margin: 10px auto; display:flex; align-items:center; justify-content:center; font-size:3em; border-radius:8px;">📊</div>
+        </div>
+
+        <div id="area-card" class="method-detail-area" style="display:none;">
+            <input type="text" placeholder="Nhập mã thẻ cào sê-ri..." style="width:100%; padding:10px; margin-bottom:8px; border:1px solid #ccc; border-radius:6px;">
+            <input type="text" placeholder="Nhập mã pin cào..." style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;">
+        </div>
+
+        <div id="area-faith" class="method-detail-area" style="display:none; text-align:center; color:#16a34a; font-weight:bold;">
+            ☘️ Hãy nhắm mắt ước có tiền và bấm nút nạp bên dưới! Anh Độ luôn tin bạn.
+        </div>
+
+        <div style="margin-top:15px;">
+            <input type="number" id="deposit-amount-input" placeholder="Nhập số tiền muốn nạp..." style="width:100%; padding:12px; font-weight:bold; border-radius:6px; border:2px solid #d32f2f; margin-bottom:12px;">
+            <div style="display:flex; gap:10px; justify-content:flex-end;">
+                <button class="btn-general" style="background:#64748b;" onclick="toggleDepositModal(false)">ĐÓNG</button>
+                <button class="btn-general" style="background:#16a34a;" onclick="executeDeposit()">XÁC NHẬN NẠP VÀO VÍ</button>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    :root {
+        --primary: #d32f2f;
+        --primary-hover: #b71c1c;
+        --success: #16a34a;
+        --bg: #121214;
+        --card-bg: #1a1a1e;
+        --text: #e2e8f0;
+        --text-muted: #94a3b8;
+    }
+    * { box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 15px; display: flex; justify-content: center; }
+    .app-container { width: 100%; max-width: 850px; display: flex; flex-direction: column; gap: 20px; }
+    
+    /* Header phong cách Tộc Trưởng Gaming */
+    .shop-header { background: linear-gradient(135deg, #1a1a1e, #d32f2f); color: white; padding: 25px; border-radius: 16px; text-align: center; border: 1px solid #2e2e38; box-shadow: 0 4px 20px rgba(211,47,47,0.15); }
+    .shop-title { font-size: 2.2em; font-weight: 900; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+    
+    /* Box tài khoản và form đăng ký */
+    .auth-box { background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid #2e2e38; text-align: center; }
+    .auth-form { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+    .auth-form input { padding: 10px; border: 1px solid #3f3f46; border-radius: 6px; background: #27272a; color: white; width: 100%; max-width: 170px; font-size: 0.9em; }
+    .user-info-panel { display: none; width: 100%; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; background: #221616; padding: 12px 20px; border-radius: 8px; border: 1px solid #7f1d1d; font-weight: bold; }
+    .badge-item { font-size: 1em; display: flex; align-items: center; gap: 4px; }
+    .btn-deposit-open { background: linear-gradient(to r, #f59e0b, #d97706); color:white; border:none; padding: 8px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+    
+    .section-title { font-size: 1.3em; font-weight: 800; color: white; margin: 0 0 12px 0; border-left: 5px solid var(--primary); padding-left: 10px; text-transform: uppercase; }
+    
+    /* Bố cục chia hai cột lớn chống tràn */
+    .main-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; align-items: start; }
+    @media (max-width: 768px) { .main-layout { grid-template-columns: 1fr; } }
+    
+    .products-list { display: flex; flex-direction: column; gap: 12px; }
+    .product-card { background: var(--card-bg); border-radius: 12px; padding: 15px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #2e2e38; gap: 12px; }
+    .prod-icon { font-size: 2em; width: 45px; text-align: center; }
+    .product-details { flex: 1; min-width: 0; }
+    .product-details h3 { margin: 0 0 4px 0; color: white; font-size: 1.05em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .product-price { color: #f43f5e; font-weight: bold; font-size: 1.05em; }
+    .product-stock { font-size: 0.85em; color: var(--text-muted); margin-top: 1px; }
+    .product-review { font-size: 0.8em; color: var(--text-muted); margin-top: 3px; font-style: italic; background: #27272a; padding: 4px 8px; border-radius: 4px; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    
+    /* Bộ đếm số lượng tinh chỉnh */
+    .qty-control { display: flex; align-items: center; gap: 8px; background: #27272a; padding: 4px; border-radius: 6px; border: 1px solid #3f3f46; }
+    .btn-qty { border: none; background: #3f3f46; color: white; width: 28px; height: 28px; font-weight: bold; cursor: pointer; border-radius: 4px; }
+    .btn-qty:hover { background: var(--primary); }
+    .qty-val { font-weight: bold; min-width: 18px; text-align: center; color: white; }
+    
+    /* Giỏ hàng */
+    .cart-box { background: var(--card-bg); border-radius: 12px; border: 1px solid #2e2e38; padding: 15px; }
+    .empty-cart { color: var(--text-muted); text-align: center; font-style: italic; padding: 10px 0; }
+    .cart-item-row { display: flex; justify-content: space-between; font-size: 0.9em; margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid #27272a; }
+    .summary-line { display: flex; justify-content: space-between; font-size: 0.95em; margin-bottom: 6px; }
+    .final-total { font-weight: bold; font-size: 1.15em; border-top: 1px solid #3f3f46; padding-top: 8px; margin-top: 8px; color: #f43f5e; }
+    
+    /* Khung mã giảm giá */
+    .coupon-section { display: flex; gap: 5px; margin-bottom: 10px; }
+    .coupon-section input { flex:1; padding: 8px; border: 1px solid #3f3f46; background: #27272a; color: white; border-radius: 4px; font-size: 0.85em; }
+    .coupon-section button { background: #3f3f46; color: white; border: none; padding: 0 12px; border-radius: 4px; cursor: pointer; font-size: 0.85em; font-weight: bold; }
+    
+    .info-result-box { display: none; background: #2e2516; border-left: 4px solid #eab308; padding: 10px; margin-top: 8px; border-radius: 6px; font-size: 0.85em; word-break: break-all; border-top: 1px solid #45341d; border-right: 1px solid #45341d; border-bottom: 1px solid #45341d; }
+    .highlight-txt { color: #f43f5e; font-weight: bold; background: rgba(244,63,94,0.1); padding: 0 4px; border-radius: 2px; }
+    
+    .delivery-form-container { display: none; background: #1e1e24; padding: 15px; border-radius: 8px; margin-top: 15px; border: 1px solid #3f3f46; }
+    .form-grid { display: flex; flex-direction: column; gap: 8px; }
+    .form-grid input { padding: 10px; border: 1px solid #3f3f46; background: #27272a; color: white; border-radius: 6px; font-size: 0.9em; width: 100%; }
+    
+    /* Vòng Quay và phân bổ nhãn chữ chuẩn đồ họa */
+    .wheel-section { background: var(--card-bg); border-radius: 16px; padding: 20px; border: 1px solid #2e2e38; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+    .wheel-outer { position: relative; width: 230px; height: 230px; }
+    .wheel { width: 100%; height: 100%; border-radius: 50%; border: 6px solid #d32f2f; background: conic-gradient(
+        #ef4444 0deg 45deg, #3b82f6 45deg 90deg, #10b981 90deg 135deg, #f59e0b 135deg 180deg, #8b5cf6 180deg 225deg, #ec4899 225deg 270deg, #64748b 270deg 315deg, #1e293b 315deg 360deg
+    ); transition: transform 4s cubic-bezier(0.1, 0.8, 0.1, 1); position: relative; overflow: hidden; }
+    .wheel-text-item { position: absolute; width: 70px; height: 20px; top: 50%; left: 50%; margin-top: -10px; margin-left: -35px; color: white; font-weight: bold; font-size: 0.72em; text-align: center; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); pointer-events: none; }
+    .wheel-pointer { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-top: 24px solid #ffffff; z-index: 10; }
+    
+    .btn-spin { background: linear-gradient(to r, #ea580c, #f59e0b); color: white; border: none; padding: 12px 40px; font-size: 1.1em; font-weight: bold; border-radius: 30px; cursor: pointer; box-shadow: 0 4px 10px rgba(234,88,12,0.3); }
+    .btn-spin:disabled { background: #3f3f46; color: var(--text-muted); cursor: not-allowed; box-shadow: none; }
+    .reward-alert-box { display: none; background: #14271d; border: 1px solid #10b981; padding: 12px; border-radius: 8px; text-align: center; color: #4ade80; font-weight: bold; width: 100%; font-size: 0.95em; }
+
+    /* Modal cổng nạp tiền */
+    .modal-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.75); z-index:100; align-items:center; justify-content:center; padding:15px; }
+    .modal-content { background:var(--card-bg); width:100%; max-width:440px; border-radius:12px; padding:20px; border:1px solid #3f3f46; }
+    .method-grid { display: grid; grid-template-columns: 1fr; gap: 8px; margin: 15px 0; }
+    .method-card { border: 1px solid #3f3f46; background: #27272a; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9em; text-align: center; color: var(--text-muted); }
+    .method-card.active { border-color: var(--primary); background: #2a1a1a; color: var(--primary); }
+    .method-detail-area { background: #27272a; padding: 12px; border-radius: 6px; border: 1px solid #3f3f46; font-size: 0.9em; margin-bottom: 12px; color: var(--text-muted); }
+    
+    .btn-general { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+    .btn-general:hover { background: var(--primary-hover); }
+</style>
+<script>
+    // Hệ thống cơ sở dữ liệu lõi vật lý của Shop Anh Độ PC
+    const user = { registered: false, username: "", balance: 0, totalSpent: 0 };
+    const products = {
+        p1: { name: "PC Mixi Văn Phòng", price: 2300000, stock: 1, selected: 0 },
+        p2: { name: "iPhone 20 Pro Max PC", price: 500000, stock: 2, selected: 0 },
+        p3: { name: "Laptop ThinkPad T480", price: 2000000, stock: 42, selected: 0 },
+        p4: { name: "PC Gaming CS:GO", price: 4500000, stock: 15, selected: 0 },
+        p5: { name: "PC Livestream 7-8 Triệu", price: 7500000, stock: 5, selected: 0 },
+        p6: { name: "Siêu Máy Tính Tộc Trưởng", price: 15000000, stock: 3, selected: 0 },
+        p7: { name: "MacBook Pro M3 Max", price: 12500000, stock: 8, selected: 0 },
+        p8: { name: "PC Giả Lập 20 Nox", price: 6000000, stock: 10, selected: 0 },
+        p9: { name: "Case Gaming Bể Cá", price: 1200000, stock: 20, selected: 0 },
+        p10: { name: "PC Đồ Hoạ AI Deep", price: 18000000, stock: 2, selected: 0 }
+    };
+    let freeSpins = 3; let isSpinning = false;
+    let activeDepositMethod = "bank";
+    let couponApplied = false; let discountValue = 0;
+
+    function handleRegister() {
+        const u = document.getElementById("reg-user").value.trim();
+        const p = document.getElementById("reg-pass").value.trim();
+        const e = document.getElementById("reg-email").value.trim();
+        if (!u || !p || !e) { alert("Vui lòng điền đủ thông tin để gia nhập Bộ Tộc!"); return; }
+        
+        user.registered = true; user.username = u; user.balance = 10000000; // Cấp vốn vật lý
+        document.getElementById("auth-form-wrapper").style.display = "none";
+        document.getElementById("user-info-panel").style.display = "flex";
+        document.getElementById("display-name").innerText = user.username;
+        
+        updateUI();
+        alert(`🎉 Chào mừng tộc viên mới [${user.username}]!\nAnh Độ PC tặng nóng bạn 10.000.000đ quỹ sỉ sịn sò.`);
+    }
+
+    function changeQty(id, delta) {
+        if (!user.registered) { alert("Bạn cần đăng ký tài khoản tộc viên trước!"); return; }
+        const prod = products[id]; const nextQty = prod.selected + delta;
+        if (nextQty < 0) return;
+        if (nextQty > prod.stock) { alert(`⚠️ Tổng kho sỉ chỉ còn đúng ${prod.stock} chiếc!`); return; }
+        
+        prod.selected = nextQty;
+        document.getElementById(`qty-${id}`).innerText = nextQty;
+        updateUI();
+    }
+</script>
+<script>
+    function applyCoupon() {
+        const code = document.getElementById("coupon-code").value.trim();
+        if (code === "VAU999") {
+            couponApplied = true;
+            document.getElementById("coupon-msg").style.color = "#16a34a";
+            document.getElementById("coupon-msg").innerText = "✓ Áp dụng mã VAU999 thành công! Giảm ngay 1,000,000 đ.";
+            updateUI();
+        } else { alert("Mã giảm giá không chính xác!"); }
+    }
+
+    function updateUI() {
+        document.getElementById("display-balance").innerText = user.balance.toLocaleString();
+        for (let k in products) {
+            document.getElementById(`stock-${k}`).innerText = products[k].stock;
+        }
+        document.getElementById("spin-count").innerText = freeSpins;
+        if (user.registered) document.getElementById("btn-spin").disabled = freeSpins <= 0 || isSpinning;
+
+        // Cập nhật Danh hiệu Tộc Viên dựa trên số tiền đã chi tiêu
+        const rank = document.getElementById("display-rank");
+        if (user.totalSpent >= 20000000) { rank.innerText = "Trùm Donate"; rank.style.color = "#f43f5e"; }
+        else if (user.totalSpent >= 5000000) { rank.innerText = "Tộc Viên Cứng"; rank.style.color = "#ea580c"; }
+        else { rank.innerText = "Thành viên mới"; rank.style.color = "#3b82f6"; }
+
+        const list = document.getElementById("cart-items-list");
+        const sumBox = document.getElementById("cart-summary");
+        const trigger = document.getElementById("btn-checkout-trigger");
+        let html = ""; let sub = 0; let has = false;
+
+        for (let k in products) {
+            let p = products[k];
+            if (p.selected > 0) {
+                has = true; let cost = p.selected * p.price; sub += cost;
+                html += `<div class="cart-item-row"><span>${p.name} (x${p.selected})</span><b>${cost.toLocaleString()} đ</b></div>`;
+            }
+        }
+        if (has) {
+            list.innerHTML = html; sumBox.style.display = "block";
+            discountValue = couponApplied ? 1000000 : 0;
+            let final = sub - discountValue; if (final < 0) final = 0;
+            document.getElementById("cart-subtotal").innerText = sub.toLocaleString() + " đ";
+            if (couponApplied) {
+                document.getElementById("discount-line").style.display = "flex";
+                document.getElementById("cart-discount").innerText = "-" + discountValue.toLocaleString() + " đ";
+            } else { document.getElementById("discount-line").style.display = "none"; }
+            document.getElementById("cart-total-price").innerText = final.toLocaleString() + " đ";
+            trigger.disabled = false; trigger.style.background = "var(--primary)";
+        } else { 
+            list.innerHTML = `<div class="empty-cart">Chưa chọn máy tính sỉ nào...</div>`; 
+            sumBox.style.display = "none"; trigger.disabled = true; trigger.style.background = "#cbd5e1";
+        }
+    }
+
+    function toggleDepositModal(show) { document.getElementById("deposit-modal").style.display = show ? "flex" : "none"; }
+    function selectMethod(m) {
+        activeDepositMethod = m;
+        document.querySelectorAll(".method-card").forEach(c => c.classList.remove("active"));
+        document.getElementById(`method-${m}`).classList.add("active");
+        document.getElementById("area-bank").style.display = m === "bank" ? "block" : "none";
+        document.getElementById("area-card").style.display = m === "card" ? "block" : "none";
+        document.getElementById("area-faith").style.display = m === "faith" ? "block" : "none";
+    }
+    function executeDeposit() {
+        const amt = parseInt(document.getElementById("deposit-amount-input").value);
+        if (isNaN(amt) || amt <= 0) { alert("Vui lòng nhập số tiền nạp hợp lệ!"); return; }
+        user.balance += amt; document.getElementById("deposit-amount-input").value = "";
+        toggleDepositModal(false); updateUI();
+        alert(`💳 Quỹ Bộ Tộc ghi nhận nạp thành công ${amt.toLocaleString()}đ vào ví ảo!`);
+    }
+
+    function openDeliveryForm() {
+        let sub = 0; for (let k in products) sub += products[k].selected * products[k].price;
+        let final = sub - discountValue; if (final < 0) final = 0;
+        if (final > user.balance) { alert("❌ Số dư không đủ tiền để lấy lô sỉ này! Vui lòng nạp thêm quỹ."); return; }
+        document.getElementById("delivery-form").style.display = "block";
+        document.getElementById("delivery-form").scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function submitDelivery() {
+        const n = document.getElementById("deliv-name").value.trim();
+        const p = document.getElementById("deliv-phone").value.trim();
+        const a = document.getElementById("deliv-address").value.trim();
+        if (!n || !p || !a) { alert("Vui lòng điền đủ thông tin kho giao nhận!"); return; }
+        let sub = 0; for (let k in products) sub += products[k].selected * products[k].price;
+        let final = sub - discountValue; if (final < 0) final = 0;
+        
+        user.balance -= final; user.totalSpent += final;
+        if (products.p1.selected > 0) document.getElementById("acc-info-box").style.display = "block";
+        for (let k in products) { let prod = products[k]; prod.stock -= prod.selected; prod.selected = 0; document.getElementById(`qty-${k}`).innerText = "0"; }
+        
+        document.getElementById("deliv-name").value = ""; document.getElementById("deliv-phone").value = ""; document.getElementById("deliv-address").value = "";
+        document.getElementById("delivery-form").style.display = "none";
+        couponApplied = false; document.getElementById("coupon-code").value = ""; document.getElementById("coupon-msg").innerText = "";
+        updateUI(); alert(`🙏 Đơn sỉ thành công! Anh Độ PC sẽ cho xe tải vận chuyển máy tính đến kho của bạn sớm nhất.`);
+    }
+
+    function spinWheel() {
+        if (freeSpins <= 0 || isSpinning) return;
+        isSpinning = true; freeSpins -= 1; updateUI();
+        document.getElementById("reward-display").style.display = "none";
+        document.getElementById("reward-delivery-form").style.display = "none";
+        
+        const rand = Math.random() * 100; let txt = ""; let angle = 0;
+        if (rand < 0.25) { txt = "Một slot chơi CS:GO cùng Bộ Tộc (0.25%)"; angle = 22.5; }
+        else if (rand < 1.0) { txt = "Card đồ họa RTX 6090ti Super (0.75%)"; angle = 67.5; }
+        else if (rand < 5.0) { txt = "Áo phông Mixi độc quyền (4%)"; angle = 112.5; }
+        else if (rand < 10.0) { txt = "Một cái TV OLED 30 inch (5%)"; angle = 157.5; }
+        else if (rand < 20.0) { txt = "Mức lương 7-8 triệu ổn định (10%)"; angle = 202.5; }
+        else if (rand < 40.0) { txt = "Một chiếc Ferrari mô hình (20%)"; angle = 247.5; }
+        else if (rand < 70.0) { txt = "Một bịch láp siêu ngon ăn vặt (30%)"; angle = 292.5; }
+        else { txt = "Một cái nịt thần thánh (30%)"; angle = 337.5; }
+        
+        const rot = 2160 + (360 - angle); const w = document.getElementById("wheel"); w.style.transform = `rotate(${rot}deg)`;
+        setTimeout(() => {
+            isSpinning = false; updateUI();
+            const b = document.getElementById("reward-display"); b.innerText = `🎁 KẾT QUẢ VÒNG QUAY: Bạn đã trúng [ ${txt} ]`; b.style.display = "block";
+            if (rand < 40.0) document.getElementById("reward-delivery-form").style.display = "block";
+            w.style.transition = 'none'; w.style.transform = `rotate(${360 - angle}deg)`;
+            setTimeout(() => { w.style.transition = 'transform 4s cubic-bezier(0.1, 0.8, 0.1, 1)'; }, 50);
+        }, 4000);
+    }
+
+    function submitRewardDelivery() {
+        const n = document.getElementById("reward-name").value.trim(); const p = document.getElementById("reward-phone").value.trim(); const a = document.getElementById("reward-address").value.trim();
+        if (!n || !p || !a) { alert("Vui lòng điền đủ thông tin nhận thưởng!"); return; }
+        document.getElementById("reward-name").value = ""; document.getElementById("reward-phone").value = ""; document.getElementById("reward-address").value = "";
+        document.getElementById("reward-delivery-form").style.display = "none";
+        alert("🎉 Thông tin đổi quà của bạn đã được lưu lại trên hệ thống vận đơn của Shop Anh Độ PC!");
+    }
+</script>
+</body>
+</html>
